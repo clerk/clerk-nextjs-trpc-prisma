@@ -9,7 +9,7 @@
 </p>
 <div align="center">
   <h1>
-    Clerk, Next.js App Router, tRPC Demo
+    Clerk, Next.js App Router, tRPC, Prisma Demo
   </h1>
   <a href="https://www.npmjs.com/package/@clerk/clerk-js">
     <img alt="Downloads" src="https://img.shields.io/npm/dm/@clerk/clerk-js" />
