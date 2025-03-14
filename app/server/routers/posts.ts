@@ -1,4 +1,4 @@
-import { publicProcedure, router } from '../trpc'
+import { protectedProcedure, publicProcedure, router } from '../trpc'
 import prisma from '@/lib/prisma'
 import { z } from 'zod'
 
@@ -18,7 +18,7 @@ export const postRouter = router({
     return await prisma.post.findMany()
   }),
   // Protected procedure that requires a user to be signed in
-  createPosts: publicProcedure.input(postSchema).mutation(async ({ input }) => {
+  createPosts: protectedProcedure.input(postSchema).mutation(async ({ input }) => {
     return await prisma.post.create({
       data: {
         title: input.title,
