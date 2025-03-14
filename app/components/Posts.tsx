@@ -15,7 +15,7 @@ export default function Posts() {
         <Link
           key={post.id}
           href={`/posts/${post.id}`}
-          className="hover:bg-neutral-100 flex flex-col rounded-lg px-2 py-4 transition-all hover:underline"
+          className="hover:bg-neutral-100 dark:hover:bg-neutral-800 flex flex-col rounded-lg px-2 py-4 transition-all hover:underline"
         >
           <span className="text-lg font-semibold">{post.title}</span>
           <span className="text-sm">by {post.authorId}</span>
