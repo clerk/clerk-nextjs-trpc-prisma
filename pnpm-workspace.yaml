@@ -1,0 +1,8 @@
+allowBuilds:
+  '@clerk/shared': false
+  '@prisma/client': false
+  '@prisma/engines': false
+  esbuild: false
+  prisma: true
+  sharp: false
+minimumReleaseAge: 2880
