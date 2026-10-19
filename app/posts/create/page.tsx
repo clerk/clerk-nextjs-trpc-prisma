@@ -40,7 +40,7 @@ export default function NewPost() {
   }
 
   // Handle form submission
-  async function createPost(e: React.FormEvent<HTMLFormElement>) {
+  async function createPost(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault()
     createPostMutation.mutate({
       title,
