@@ -1,12 +1,7 @@
 import type { Metadata } from 'next'
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  Show,
-  UserButton,
-} from '@clerk/nextjs'
+import { ClerkProvider, SignInButton, SignUpButton, Show, UserButton } from '@clerk/nextjs'
 import { Geist, Geist_Mono } from 'next/font/google'
+import { Suspense } from 'react'
 import './globals.css'
 import TRPCProvider from '@/app/_trpc/Provider'
 
@@ -32,19 +27,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ClerkProvider>
           <TRPCProvider>
             <header className="flex justify-end items-center p-4 gap-4 h-16">
-              <Show when="signed-out">
-                <SignInButton />
-                <SignUpButton />
-              </Show>
-              <Show when="signed-in">
-                <UserButton />
-              </Show>
+              <Suspense fallback={null}>
+                <Show when="signed-out">
+                  <SignInButton />
+                  <SignUpButton />
+                </Show>
+                <Show when="signed-in">
+                  <UserButton />
+                </Show>
+              </Suspense>
             </header>
             {children}
           </TRPCProvider>
