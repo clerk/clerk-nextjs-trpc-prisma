@@ -2,6 +2,6 @@
 
 import { createTRPCReact } from '@trpc/react-query'
 
-import type { PostRouter } from '@/app/server/routers/posts'
+import type { AppRouter } from '@/app/server/routers/posts'
 
-export const trpc = createTRPCReact<PostRouter>({})
+export const trpc = createTRPCReact<AppRouter>({})
