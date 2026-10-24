@@ -8,7 +8,7 @@ const postSchema = z.object({
   authorId: z.string(),
 })
 
-export const postRouter = router({
+export const appRouter = router({
   getPost: publicProcedure.input(z.object({ id: z.string() })).query(async ({ input }) => {
     return await prisma.post.findUnique({
       where: { id: parseInt(input.id) },
@@ -29,4 +29,4 @@ export const postRouter = router({
   }),
 })
 
-export type PostRouter = typeof postRouter
+export type AppRouter = typeof appRouter

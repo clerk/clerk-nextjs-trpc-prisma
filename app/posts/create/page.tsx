@@ -1,11 +1,12 @@
 'use client'
 
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { SignInButton, useAuth } from '@clerk/nextjs'
 import { trpc } from '@/app/_trpc/client'
 import { useState } from 'react'
 
 export default function NewPost() {
+  const router = useRouter()
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   // Use Clerk's `useAuth()` hook to get the user's ID
@@ -42,15 +43,18 @@ export default function NewPost() {
   // Handle form submission
   async function createPost(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault()
-    createPostMutation.mutate({
-      title,
-      content,
-      authorId: userId as string,
-    })
-    redirect('/')
+    createPostMutation.mutate(
+      {
+        title,
+        content,
+        authorId: userId as string,
+      },
+      // Go back to the posts list once the post is saved
+      { onSuccess: () => router.push('/') },
+    )
   }
   return (
-    <div className="mx-auto max-w-2xl p-4">
+    <div className="mx-auto w-full max-w-2xl p-4">
       <h1 className="mb-6 text-2xl font-bold">Create New Post</h1>
       <form onSubmit={createPost} className="space-y-6">
         <div>
