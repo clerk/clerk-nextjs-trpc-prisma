@@ -9,7 +9,7 @@ export default function NewPost() {
   const router = useRouter()
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
-  // Use Clerk's `useAuth()` hook to get the user's ID
+  // Check whether the user is signed in
   const { userId, isLoaded } = useAuth()
   // Use the `createPosts` mutation from the TRPC client
   const createPostMutation = trpc.createPosts.useMutation()
@@ -47,7 +47,6 @@ export default function NewPost() {
       {
         title,
         content,
-        authorId: userId as string,
       },
       // Go back to the posts list once the post is saved
       { onSuccess: () => router.push('/') },

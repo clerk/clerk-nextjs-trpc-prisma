@@ -5,7 +5,6 @@ import { z } from 'zod'
 const postSchema = z.object({
   title: z.string(),
   content: z.string(),
-  authorId: z.string(),
 })
 
 export const appRouter = router({
@@ -18,12 +17,12 @@ export const appRouter = router({
     return await prisma.post.findMany()
   }),
   // Protected procedure that requires a user to be signed in
-  createPosts: protectedProcedure.input(postSchema).mutation(async ({ input }) => {
+  createPosts: protectedProcedure.input(postSchema).mutation(async ({ input, ctx }) => {
     return await prisma.post.create({
       data: {
         title: input.title,
         content: input.content,
-        authorId: input.authorId,
+        authorId: ctx.userId,
       },
     })
   }),

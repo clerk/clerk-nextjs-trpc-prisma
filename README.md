@@ -37,6 +37,12 @@ Deploy the template to Vercel with the button below. You'll need to set your Cle
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fclerk%2Fclerk-nextjs-trpc-prisma&env=NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,CLERK_SECRET_KEY,DATABASE_URL&envDescription=Clerk%20API%20keys%20and%20a%20PostgreSQL%20connection%20string&envLink=https%3A%2F%2Fclerk.com%2Fdocs%2Fguides%2Fdevelopment%2Ftrpc&redirect-url=https%3A%2F%2Fclerk.com%2Fdocs%2Fguides%2Fdevelopment%2Ftrpc)
 
+The deployment does not create database tables. Before using the deployed app, use a local checkout with dependencies installed and set `DATABASE_URL` to the same PostgreSQL database you configured in Vercel. Apply the included migrations with:
+
+```bash
+pnpm prisma migrate deploy
+```
+
 ## Running the template
 
 ```bash
