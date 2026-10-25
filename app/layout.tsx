@@ -7,6 +7,8 @@ import {
   UserButton,
 } from '@clerk/nextjs'
 import { Geist, Geist_Mono } from 'next/font/google'
+import Link from 'next/link'
+import { Suspense } from 'react'
 import './globals.css'
 import TRPCProvider from '@/app/_trpc/Provider'
 
@@ -31,20 +33,24 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">
         <ClerkProvider>
           <TRPCProvider>
             <header className="flex justify-end items-center p-4 gap-4 h-16">
-              <Show when="signed-out">
-                <SignInButton />
-                <SignUpButton />
-              </Show>
-              <Show when="signed-in">
-                <UserButton />
-              </Show>
+              <Suspense>
+                <Show when="signed-out">
+                  <SignInButton />
+                  <SignUpButton />
+                </Show>
+                <Show when="signed-in">
+                  <Link href="/">Home</Link>
+                  <UserButton />
+                </Show>
+              </Suspense>
             </header>
             {children}
           </TRPCProvider>

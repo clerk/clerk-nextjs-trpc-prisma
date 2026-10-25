@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Posts from './components/Posts'
 
-export default async function Page() {
+export default function Page() {
   return (
     <div className="-mt-16 flex min-h-screen flex-col items-center justify-center">
       <h1 className="mb-8 text-4xl font-bold">Posts</h1>
